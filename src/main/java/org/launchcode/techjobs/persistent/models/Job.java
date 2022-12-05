@@ -6,7 +6,7 @@ import java.util.List;
 @Entity
 public class Job extends AbstractEntity {
 
-    @ManyToMany
+    @ManyToOne
     private Employer employer;
     @ManyToMany
     private List<Skill> skills;

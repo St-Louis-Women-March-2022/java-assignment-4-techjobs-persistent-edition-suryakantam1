@@ -15,14 +15,15 @@ import java.util.Optional;
 @RequestMapping("employers")
 public class EmployerController {
 
-
     @Autowired
     private EmployerRepository employerRepository;
 
     @RequestMapping("")
     public String index(Model model) {
+
         model.addAttribute("employers", employerRepository.findAll());
-        return "employer/index";
+
+        return "employers/index";
     }
     @GetMapping("add")
     public String displayAddEmployerForm(Model model) {
@@ -32,13 +33,13 @@ public class EmployerController {
 
     @PostMapping("add")
     public String processAddEmployerForm(@ModelAttribute @Valid Employer newEmployer,
-                                    Errors errors, Model model) {
+                                         Errors errors, Model model) {
 
         if (errors.hasErrors()) {
             return "employers/add";
         }
         employerRepository.save(newEmployer);
-        return "redirect";
+        return "redirect:";
     }
 
     @GetMapping("view/{employerId}")
