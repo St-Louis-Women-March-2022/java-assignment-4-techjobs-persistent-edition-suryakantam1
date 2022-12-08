@@ -61,19 +61,4 @@ public class ListController {
 
         return "list-jobs";
     }
-
-//    @GetMapping("jobs")
-//    public String listJobs(Model model){
-//        Iterable<Job> jobs;
-//        jobs = jobRepository.findAll();
-//        model.addAttribute("jobs", jobs);
-//        return "skills/index";
-
-//    @GetMapping("")
-//    public String index(Model model) {
-//
-//        model.addAttribute("jobs", jobRepository.findAll());
-//
-//        return "skills/index";
-//    }
 }
