@@ -8,6 +8,7 @@ import org.launchcode.techjobs.persistent.models.data.SkillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -30,7 +31,7 @@ public class ListController {
     private SkillRepository skillRepository;
     static HashMap<String, String> columnChoices = new HashMap<>();
 
-    public ListController () {
+    public ListController() {
 
         columnChoices.put("all", "All");
         columnChoices.put("employer", "Employer");
@@ -42,13 +43,14 @@ public class ListController {
     public String list(Model model) {
         model.addAttribute("employers", employerRepository.findAll());
         model.addAttribute("skills", skillRepository.findAll());
+        //model.addAttribute("skills", skillRepository.findAll());
         return "list";
     }
 
     @RequestMapping(value = "jobs")
     public String listJobsByColumnAndValue(Model model, @RequestParam String column, @RequestParam String value) {
         Iterable<Job> jobs;
-        if (column.toLowerCase().equals("all")){
+        if (column.toLowerCase().equals("all")) {
             jobs = jobRepository.findAll();
             model.addAttribute("title", "All Jobs");
         } else {
@@ -59,4 +61,19 @@ public class ListController {
 
         return "list-jobs";
     }
+
+//    @GetMapping("jobs")
+//    public String listJobs(Model model){
+//        Iterable<Job> jobs;
+//        jobs = jobRepository.findAll();
+//        model.addAttribute("jobs", jobs);
+//        return "skills/index";
+
+//    @GetMapping("")
+//    public String index(Model model) {
+//
+//        model.addAttribute("jobs", jobRepository.findAll());
+//
+//        return "skills/index";
+//    }
 }
